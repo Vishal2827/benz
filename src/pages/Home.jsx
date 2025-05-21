@@ -3,41 +3,57 @@ import video1 from '../assets/original.mp4';
 import video2 from '../assets/original (1).mp4';
 import Footer from '../Components/Footer';
 
+import irisWebp from '../assets/iris.webp';
+import irisAvif from '../assets/iris.avif';
+import irisWebp1 from '../assets/iris (1).webp';
+
+import photo1 from '../assets/photo-1546518071-fddcdda7580a.avif';
+import photo2 from '../assets/photo-1546933751-22670568bacf.avif';
+import photo3 from '../assets/photo-1583870996781-5b88f8a62aad.avif';
+import photo4 from '../assets/istockphoto-1422277261-612x612.webp';
+import photo5 from '../assets/istockphoto-130407085-612x612.webp';
+import photo6 from '../assets/photo-1646194314870-6e25f74e6e60.avif';
+import photo7 from '../assets/photo-1650585355076-301fae2f0316.avif';
+import photo8 from '../assets/photo-1667070884879-4b7f73cc146c.avif';
+import photo9 from '../assets/photo-1722816385770-8640d490117b.avif';
+
+import screenshot from '../assets/Screenshot 2025-05-20 162834.png';
+
 const carData = [
   {
-    src: 'src/assets/photo-1546518071-fddcdda7580a.avif',
+    src: photo1,
     quote: 'Luxury redefined, silence louder than engine noise.',
   },
   {
-    src: 'src/assets/photo-1546933751-22670568bacf.avif',
+    src: photo2,
     quote: 'Command every road; power, prestige, and presence.',
   },
   {
-    src: 'src/assets/photo-1583870996781-5b88f8a62aad.avif',
+    src: photo3,
     quote: 'Elegance in motion, crafted for quiet confidence.',
   },
   {
-    src: 'src/assets/istockphoto-1422277261-612x612.webp',
+    src: photo4,
     quote: 'Timeless design meets everyday driving excellence.',
   },
   {
-    src: 'src/assets/istockphoto-130407085-612x612.webp',
+    src: photo5,
     quote: 'Born for speed, sculpted like a bullet.',
   },
   {
-    src: 'src/assets/photo-1646194314870-6e25f74e6e60.avif',
+    src: photo6,
     quote: 'Curves, control, and cutting-edge charisma.',
   },
   {
-    src: 'src/assets/photo-1650585355076-301fae2f0316.avif',
+    src: photo7,
     quote: 'Beyond luxury, Maybach moves in absolute grace.',
   },
   {
-    src: 'src/assets/photo-1667070884879-4b7f73cc146c.avif',
+    src: photo8,
     quote: 'Smart, sleek, electric: silently stunning Mercedes drive.',
   },
   {
-    src: 'src/assets/photo-1722816385770-8640d490117b.avif',
+    src: photo9,
     quote: 'The future hums quietly in electric sophistication.',
   },
 ];
@@ -71,8 +87,12 @@ const Home = () => {
           </button>
         </div>
       </div>
+
       <div>
-        <h1 className='text-4xl ml-20 mt-20 mb-10 font-serif'>The perfect blend of luxury, sportiness and performance: <br />Discover our latest models</h1>
+        <h1 className='text-4xl ml-20 mt-20 mb-10 font-serif'>
+          The perfect blend of luxury, sportiness and performance: <br />
+          Discover our latest models
+        </h1>
         <div className='mb-10 flex flex-row ml-20'>
           <button className='px-4 py-3 cursor-pointer hover:bg-blue-400 border-2'>Discover all models</button>
           <button className='px-4 py-3 cursor-pointer hover:bg-blue-400 border-2 ml-10'>Discover electric models</button>
@@ -80,22 +100,21 @@ const Home = () => {
         <div className='mb-30 mt-20 flex flex-row justify-between'>
           <div className='ml-8 bg-zinc-200 h-25 w-90 rounded-xl'>
             <h1 className='ml-14 mt-2 font-serif'>Discover the model limoscene</h1>
-            <img className='h-30 w-50' src="src/assets/iris.webp" alt="" />
+            <img className='h-30 w-50' src={irisWebp} alt="iris" />
           </div>
           <div className='ml-8 bg-zinc-200 h-25 w-90 rounded-xl'>
             <h1 className='ml-14 mt-2 font-serif'>Discover the models SUV range</h1>
-            <img className='h-30 w-50' src="src/assets/iris.avif" alt="" />
+            <img className='h-30 w-50' src={irisAvif} alt="iris" />
           </div>
           <div className='mr-8 bg-zinc-200 h-25 w-90 rounded-xl'>
             <h1 className='ml-14 mt-2 font-serif'>Discover the models Roadsters</h1>
-            <img className='h-30 w-50' src="src/assets/iris (1).webp" alt="" />
+            <img className='h-30 w-50' src={irisWebp1} alt="iris" />
           </div>
         </div>
       </div>
 
       {/* Diagonal Car Gallery */}
       <div className="grid grid-cols-2 gap-4 px-6 py-12 bg-zinc-100">
-       
         {carData.map((car, i) => (
           <div
             key={i}
@@ -112,12 +131,13 @@ const Home = () => {
           </div>
         ))}
       </div>
+
       <div>
-        <img src="src/assets/Screenshot 2025-05-20 162834.png" alt="" />
+        <img src={screenshot} alt="screenshot" />
       </div>
-<Footer/>
+
+      <Footer />
     </div>
-    
   );
 };
 
