@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import bgImage from './assets/auth-bg.jpg'; // ✅ Add a suitable image in your assets folder
+import bgImage from '../assets/auth-bg.jpg'; // ✅ Add a suitable image in your assets folder
 
 const Register = () => {
   const [isLogin, setIsLogin] = useState(true);
