@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router';
 import { Menu, X } from 'lucide-react'; // Lucide icons for hamburger
 
-import logo from '../assets/Mercedes-Logo.svg';
+import logo from '/assets/Mercedes-Logo.svg';
 
 const Nav = () => {
   const [menuOpen, setMenuOpen] = useState(false);

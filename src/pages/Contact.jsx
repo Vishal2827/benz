@@ -5,37 +5,37 @@ const teamMembers = [
   {
     name: 'Vishal Parjapat',
     role: 'Manager',
-    email: 'vishal89y7@mercedes.com',
+    email: 'vishalparjapatt@mercedes.com',
     phone: '+1 555-101-2020',
-    photo: 'src/assets/IMG_5001.PNG',
+    photo: '/assets/IMG_5001.PNG',
   },
   {
     name: 'Suraj Singh Verma',
     role: 'Customer Relations',
     email: 'suraj.singh@mercedes.com',
     phone: '+1 555-303-4040',
-    photo: 'src/assets/Screenshot 2025-05-21 132609.png',
+    photo: '/assets/Screenshot 2025-05-21 132609.png',
   },
   {
     name: 'Rajiv kumar',
     role: 'Finance Specialist',
     email: 'rajiv.sharma@mercedes.com',
     phone: '+1 555-505-6060',
-    photo: 'src/assets/rajiv.jpg',
+    photo: '/assets/rajiv.jpg',
   },
   {
     name: 'Shubham',
     role: 'Technical Advisor',
     email: 'shubham1887@mercedes.com',
     phone: '+1 555-707-8080',
-    photo: 'src/assets/Screenshot 2025-05-21 141901.png',
+    photo: '/assets/Screenshot 2025-05-21 141901.png',
   },
   {
     name: 'Mayank Negi',
     role: 'Marketing Lead',
     email: 'mayank.negi@mercedes.com',
     phone: '+1 555-909-1010',
-    photo: 'src/assets/Screenshot 2025-05-21 132944.png',
+    photo: '/assets/Screenshot 2025-05-21 132944.png',
   },
 ];
 

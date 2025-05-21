@@ -1,23 +1,23 @@
 import React from 'react';
-import video1 from '../assets/original.mp4';
-import video2 from '../assets/original (1).mp4';
+import video1 from '/assets/original.mp4';
+import video2 from '/assets/original (1).mp4';
 import Footer from '../Components/Footer';
 
-import irisWebp from '../assets/iris.webp';
-import irisAvif from '../assets/iris.avif';
-import irisWebp1 from '../assets/iris (1).webp';
+import irisWebp from '/assets/iris.webp';
+import irisAvif from '/assets/iris.avif';
+import irisWebp1 from '/assets/iris (1).webp';
 
-import photo1 from '../assets/photo-1546518071-fddcdda7580a.avif';
-import photo2 from '../assets/photo-1546933751-22670568bacf.avif';
-import photo3 from '../assets/photo-1583870996781-5b88f8a62aad.avif';
-import photo4 from '../assets/istockphoto-1422277261-612x612.webp';
-import photo5 from '../assets/istockphoto-130407085-612x612.webp';
-import photo6 from '../assets/photo-1646194314870-6e25f74e6e60.avif';
-import photo7 from '../assets/photo-1650585355076-301fae2f0316.avif';
-import photo8 from '../assets/photo-1667070884879-4b7f73cc146c.avif';
-import photo9 from '../assets/photo-1722816385770-8640d490117b.avif';
+import photo1 from '/assets/photo-1546518071-fddcdda7580a.avif';
+import photo2 from '/assets/photo-1546933751-22670568bacf.avif';
+import photo3 from '/assets/photo-1583870996781-5b88f8a62aad.avif';
+import photo4 from '/assets/istockphoto-1422277261-612x612.webp';
+import photo5 from '/assets/istockphoto-130407085-612x612.webp';
+import photo6 from '/assets/photo-1646194314870-6e25f74e6e60.avif';
+import photo7 from '/assets/photo-1650585355076-301fae2f0316.avif';
+import photo8 from '/assets/photo-1667070884879-4b7f73cc146c.avif';
+import photo9 from '/assets/photo-1722816385770-8640d490117b.avif';
 
-import screenshot from '../assets/Screenshot 2025-05-20 162834.png';
+import screenshot from '/assets/Screenshot 2025-05-20 162834.png';
 
 const carData = [
   {

@@ -20,7 +20,7 @@ const Category = () => {
       {/* Header Section with Overlay */}
       <div className="relative w-full h-[500px]">
         <img
-          src="src/assets/Maybach-Pattern.png"
+          src="/assets/Maybach-Pattern.png"
           alt="Maybach Pattern"
           className="w-full h-full object-cover"
         />
@@ -54,10 +54,10 @@ const Category = () => {
           Experience pure luxury with the Mercedes-Benz GLE SUV – where power meets prestige.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 px-10">
-          <CarCard src="src/assets/suv-1.avif" title="GLE SUV" price="$80,000 - $95,000" fuel="Diesel / Petrol" />
-          <CarCard src="src/assets/suv-2.webp" title="GLS SUV" price="$90,000 - $110,000" fuel="Diesel" />
-          <CarCard src="src/assets/suv-3.avif" title="GLC Coupe" price="$70,000 - $85,000" fuel="Petrol" />
-          <CarCard src="src/assets/suv-4.avif" title="GLB SUV" price="$55,000 - $68,000" fuel="Diesel" />
+          <CarCard src="/assets/suv-1.avif" title="GLE SUV" price="$80,000 - $95,000" fuel="Diesel / Petrol" />
+          <CarCard src="/assets/suv-2.webp" title="GLS SUV" price="$90,000 - $110,000" fuel="Diesel" />
+          <CarCard src="/assets/suv-3.avif" title="GLC Coupe" price="$70,000 - $85,000" fuel="Petrol" />
+          <CarCard src="/assets/suv-4.avif" title="GLB SUV" price="$55,000 - $68,000" fuel="Diesel" />
         </div>
       </section>
 
@@ -68,10 +68,10 @@ const Category = () => {
           The Mercedes-Benz S-Class – an icon of sophistication, innovation, and executive comfort.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-10">
-          <CarCard src="src/assets/s-1.avif" title="S 500" price="$100,000 - $130,000" fuel="Petrol" />
-          <CarCard src="src/assets/s-2.avif" title="S 580 4MATIC" price="$120,000 - $150,000" fuel="Diesel / Petrol" />
-          <CarCard src="src/assets/s-3.avif" title="Maybach S-Class" price="$180,000 - $210,000" fuel="Petrol" />
-          <CarCard src="src/assets/s-4.avif" title="S-Class Plug-in" price="$140,000 - $160,000" fuel="Hybrid" />
+          <CarCard src="/assets/s-1.avif" title="S 500" price="$100,000 - $130,000" fuel="Petrol" />
+          <CarCard src="/assets/s-2.avif" title="S 580 4MATIC" price="$120,000 - $150,000" fuel="Diesel / Petrol" />
+          <CarCard src="/assets/s-3.avif" title="Maybach S-Class" price="$180,000 - $210,000" fuel="Petrol" />
+          <CarCard src="/assets/s-4.avif" title="S-Class Plug-in" price="$140,000 - $160,000" fuel="Hybrid" />
         </div>
       </section>
 
@@ -82,10 +82,10 @@ const Category = () => {
           Drive the future with our fully electric lineup – silent power, zero emissions, pure performance.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-10">
-          <CarCard src="src/assets/c-1.avif" title="EQB SUV" price="$55,000 - $65,000" fuel="Electric" />
-          <CarCard src="src/assets/c-2.webp" title="EQE SUV" price="$75,000 - $90,000" fuel="Electric" />
-          <CarCard src="src/assets/c-3.avif" title="EQS SUV" price="$105,000 - $135,000" fuel="Electric" />
-          <CarCard src="src/assets/suv-4.webp" title="EQA Compact" price="$45,000 - $55,000" fuel="Electric" />
+          <CarCard src="/assets/c-1.avif" title="EQB SUV" price="$55,000 - $65,000" fuel="Electric" />
+          <CarCard src="/assets/c-2.webp" title="EQE SUV" price="$75,000 - $90,000" fuel="Electric" />
+          <CarCard src="/assets/c-3.avif" title="EQS SUV" price="$105,000 - $135,000" fuel="Electric" />
+          <CarCard src="/assets/suv-4.webp" title="EQA Compact" price="$45,000 - $55,000" fuel="Electric" />
         </div>
       </section>
 

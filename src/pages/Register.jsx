@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import bgImage from './assets/auth-bg.jpg'; // ✅ Add a suitable image in your assets folder
 
 const Register = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -38,21 +39,27 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-purple-600 to-pink-500 flex items-center justify-center px-4 py-12">
-      <div className="bg-white/20 backdrop-blur-xl border border-white/30 rounded-xl shadow-xl max-w-md w-full p-8 text-white">
-        <h2 className="text-3xl font-bold text-center mb-6">
-          {isLogin ? 'Welcome Back!' : 'Create an Account'}
+    <div
+      className="min-h-screen flex items-center justify-center bg-cover bg-center relative px-4 py-12"
+      style={{ backgroundImage: `url(${bgImage})` }}
+    >
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+
+      <div className="relative z-10 bg-white/10 backdrop-blur-2xl border border-white/30 rounded-2xl shadow-2xl max-w-md w-full p-8 text-white">
+        <h2 className="text-4xl font-extrabold text-center mb-6 drop-shadow-lg">
+          {isLogin ? 'Welcome Back 👋' : 'Join Us Today 🚀'}
         </h2>
         <form onSubmit={handleSubmit} className="space-y-5">
           {!isLogin && (
             <div>
-              <label className="block mb-1 font-semibold">Name</label>
+              <label className="block mb-1 font-medium">Name</label>
               <input
                 name="name"
                 value={form.name}
                 onChange={handleChange}
-                placeholder="Your name"
-                className={`w-full px-3 py-2 rounded bg-white/30 text-white placeholder-white focus:outline-none ${
+                placeholder="Your full name"
+                className={`w-full px-4 py-2 rounded-lg bg-white/20 placeholder-white text-white focus:outline-none focus:ring-2 focus:ring-white/60 ${
                   errors.name ? 'border border-red-400' : 'border border-white/30'
                 }`}
               />
@@ -60,36 +67,36 @@ const Register = () => {
             </div>
           )}
           <div>
-            <label className="block mb-1 font-semibold">Email</label>
+            <label className="block mb-1 font-medium">Email</label>
             <input
               name="email"
               type="email"
               value={form.email}
               onChange={handleChange}
               placeholder="you@example.com"
-              className={`w-full px-3 py-2 rounded bg-white/30 text-white placeholder-white focus:outline-none ${
+              className={`w-full px-4 py-2 rounded-lg bg-white/20 placeholder-white text-white focus:outline-none focus:ring-2 focus:ring-white/60 ${
                 errors.email ? 'border border-red-400' : 'border border-white/30'
               }`}
             />
             {errors.email && <p className="text-red-300 text-sm">{errors.email}</p>}
           </div>
           <div>
-            <label className="block mb-1 font-semibold">Password</label>
+            <label className="block mb-1 font-medium">Password</label>
             <div className="relative">
               <input
                 name="password"
                 type={showPassword ? 'text' : 'password'}
                 value={form.password}
                 onChange={handleChange}
-                placeholder="******"
-                className={`w-full px-3 py-2 rounded bg-white/30 text-white placeholder-white focus:outline-none ${
+                placeholder="********"
+                className={`w-full px-4 py-2 rounded-lg bg-white/20 placeholder-white text-white focus:outline-none focus:ring-2 focus:ring-white/60 ${
                   errors.password ? 'border border-red-400' : 'border border-white/30'
                 }`}
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-2 text-sm text-white"
+                className="absolute right-3 top-2 text-sm text-white hover:text-gray-300"
               >
                 {showPassword ? 'Hide' : 'Show'}
               </button>
@@ -98,22 +105,22 @@ const Register = () => {
           </div>
           {!isLogin && (
             <div>
-              <label className="block mb-1 font-semibold">Confirm Password</label>
+              <label className="block mb-1 font-medium">Confirm Password</label>
               <div className="relative">
                 <input
                   name="confirmPassword"
                   type={showConfirmPassword ? 'text' : 'password'}
                   value={form.confirmPassword}
                   onChange={handleChange}
-                  placeholder="******"
-                  className={`w-full px-3 py-2 rounded bg-white/30 text-white placeholder-white focus:outline-none ${
+                  placeholder="********"
+                  className={`w-full px-4 py-2 rounded-lg bg-white/20 placeholder-white text-white focus:outline-none focus:ring-2 focus:ring-white/60 ${
                     errors.confirmPassword ? 'border border-red-400' : 'border border-white/30'
                   }`}
                 />
                 <button
                   type="button"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-3 top-2 text-sm text-white"
+                  className="absolute right-3 top-2 text-sm text-white hover:text-gray-300"
                 >
                   {showConfirmPassword ? 'Hide' : 'Show'}
                 </button>
@@ -121,13 +128,16 @@ const Register = () => {
               {errors.confirmPassword && <p className="text-red-300 text-sm">{errors.confirmPassword}</p>}
             </div>
           )}
-          <button className="w-full bg-white text-blue-700 font-bold py-2 rounded hover:bg-gray-200 transition">
+          <button
+            type="submit"
+            className="w-full bg-white text-blue-700 font-bold py-2 rounded-lg hover:bg-blue-100 transition-all duration-300"
+          >
             {isLogin ? 'Log In' : 'Sign Up'}
           </button>
         </form>
-        <p className="mt-6 text-center text-white">
+        <p className="mt-6 text-center text-white/90">
           {isLogin ? "Don't have an account?" : 'Already have an account?'}{' '}
-          <button onClick={toggleForm} className="underline font-semibold">
+          <button onClick={toggleForm} className="underline font-semibold hover:text-gray-300 transition">
             {isLogin ? 'Sign Up' : 'Log In'}
           </button>
         </p>
