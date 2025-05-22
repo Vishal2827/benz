@@ -6,25 +6,10 @@ pipeline {
         PROJECT_NAME = "benz"
         TARGET_PATH = "${PARENT_DIR}/${PROJECT_NAME}"
         REPO_URL = "https://github.com/Vishal2827/benz.git"
-        DEFAULT_WORKSPACE_PATH = "/var/lib/jenkins/workspace/${env.JOB_NAME}"
         BACKUP_DIR = "/var/lib/jenkins/backups/${PROJECT_NAME}-${new Date().format('yyyy-MM-dd-HH-mm-ss')}"
     }
 
     stages {
-        stage('Clean Workspace') {
-            steps {
-                echo "Cleaning up Jenkins default workspace if it exists..."
-                sh '''
-                    if [ -d "$DEFAULT_WORKSPACE_PATH" ]; then
-                        rm -rf "$DEFAULT_WORKSPACE_PATH"
-                        echo "Deleted default workspace: $DEFAULT_WORKSPACE_PATH"
-                    else
-                        echo "Default workspace not found, skipping cleanup."
-                    fi
-                '''
-            }
-        }
-
         stage('Backup Existing Project') {
             steps {
                 echo "Backing up project if it exists..."
