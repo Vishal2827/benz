@@ -6,10 +6,19 @@ pipeline {
         PROJECT_NAME = "benz"
         TARGET_PATH = "${PARENT_DIR}/${PROJECT_NAME}"
         REPO_URL = "https://github.com/Vishal2827/benz.git"
-        BACKUP_DIR = "/var/lib/jenkins/backups/${PROJECT_NAME}-${new Date().format('yyyy-MM-dd-HH-mm-ss')}"
     }
 
     stages {
+        stage('Set Dynamic Backup Path') {
+            steps {
+                script {
+                    def timestamp = new Date().format("yyyy-MM-dd-HH-mm-ss")
+                    env.BACKUP_DIR = "/var/lib/jenkins/backups/${env.PROJECT_NAME}-${timestamp}"
+                    echo "Backup directory set to: ${env.BACKUP_DIR}"
+                }
+            }
+        }
+
         stage('Backup Existing Project') {
             steps {
                 echo "Backing up project if it exists..."
@@ -79,10 +88,10 @@ pipeline {
 
     post {
         success {
-            echo "Pipeline executed successfully for project: ${env.PROJECT_NAME}"
+            echo "✅ Pipeline executed successfully for project: ${env.PROJECT_NAME}"
         }
         failure {
-            echo "Pipeline failed. Check logs."
+            echo "❌ Pipeline failed. Check logs."
         }
     }
 }
