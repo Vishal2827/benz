@@ -71,12 +71,26 @@ pipeline {
                 sh '''
                     cd "$TARGET_PATH"
 
-                    docker stop benz || true
-                    docker rm benz || true
-                    docker rmi -f benz || true
+                    # Stop and remove container if exists
+                    if [ "$(docker ps -aq -f name=^/${PROJECT_NAME}$)" ]; then
+                        echo "Container '${PROJECT_NAME}' exists. Stopping and removing..."
+                        docker stop ${PROJECT_NAME}
+                        docker rm ${PROJECT_NAME}
+                    else
+                        echo "Container '${PROJECT_NAME}' does not exist."
+                    fi
 
-                    docker build -t benz .
-                    docker run -d --name benz -p 80:80 benz
+                    # Remove image if exists
+                    if [ "$(docker images -q ${PROJECT_NAME})" ]; then
+                        echo "Image '${PROJECT_NAME}' exists. Removing image..."
+                        docker rmi -f ${PROJECT_NAME}
+                    else
+                        echo "Image '${PROJECT_NAME}' does not exist."
+                    fi
+
+                    # Build and run the new container
+                    docker build -t ${PROJECT_NAME} .
+                    docker run -d --name ${PROJECT_NAME} -p 80:80 ${PROJECT_NAME}
                 '''
             }
         }
@@ -84,10 +98,10 @@ pipeline {
 
     post {
         success {
-            echo "✅ Pipeline executed successfully for project: ${env.PROJECT_NAME}"
+            echo " Pipeline executed successfully for project: ${env.PROJECT_NAME}"
         }
         failure {
-            echo "❌ Pipeline failed. Check logs."
+            echo " Pipeline failed. Check logs."
         }
     }
 }
