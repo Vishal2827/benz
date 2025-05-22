@@ -1,19 +1,13 @@
 pipeline {
     agent any
-
     environment {
-        PARENT_DIR = "/var/www/html"
-        PROJECT_NAME = "benz"
-        TARGET_PATH = "${PARENT_DIR}/${PROJECT_NAME}"
-        REPO_URL = "https://github.com/Vishal2827/benz.git"
+        BACKUP_DIR = "/var/lib/jenkins/backups/benz-${new Date().format('yyyy-MM-dd-HH-mm-ss')}"
     }
-
     stages {
         stage('Set Dynamic Backup Path') {
             steps {
                 script {
-                    def timestamp = new Date().format("yyyy-MM-dd-HH-mm-ss")
-                    env.BACKUP_DIR = "/var/lib/jenkins/backups/${env.PROJECT_NAME}-${timestamp}"
+                    env.BACKUP_DIR = "/var/lib/jenkins/backups/benz-${new Date().format('yyyy-MM-dd-HH-mm-ss')}"
                     echo "Backup directory set to: ${env.BACKUP_DIR}"
                 }
             }
@@ -23,10 +17,10 @@ pipeline {
             steps {
                 echo "Backing up project if it exists..."
                 sh '''
-                    if [ -d "$TARGET_PATH" ]; then
-                        echo "Backing up to $BACKUP_DIR"
-                        mkdir -p "$(dirname "$BACKUP_DIR")"
-                        cp -r "$TARGET_PATH" "$BACKUP_DIR"
+                    if [ -d /var/www/html/benz ]; then
+                        echo "Backing up to ${BACKUP_DIR}"
+                        mkdir -p $(dirname ${BACKUP_DIR})
+                        cp -r /var/www/html/benz ${BACKUP_DIR}
                     fi
                 '''
             }
@@ -36,18 +30,16 @@ pipeline {
             steps {
                 echo "Cloning or pulling repository..."
                 sh '''
-                    mkdir -p "$PARENT_DIR"
-                    cd "$PARENT_DIR"
-
-                    if [ -d "$TARGET_PATH/.git" ]; then
+                    mkdir -p /var/www/html
+                    cd /var/www/html
+                    if [ -d benz/.git ]; then
                         echo "Git repo exists. Checking out main branch and pulling..."
-                        cd "$TARGET_PATH"
-                        git config --global --add safe.directory "$TARGET_PATH"
-                        git checkout main || git checkout -b main
+                        cd benz
+                        git config --global --add safe.directory /var/www/html/benz
+                        git checkout main
                         git pull origin main
                     else
-                        echo "Cloning repository..."
-                        git clone "$REPO_URL" "$TARGET_PATH"
+                        git clone https://github.com/Vishal2827/benz.git
                     fi
                 '''
             }
@@ -57,10 +49,10 @@ pipeline {
             steps {
                 echo "Rolling back to tag v1.0.0..."
                 sh '''
-                    cd "$TARGET_PATH"
-                    git config --global --add safe.directory "$TARGET_PATH"
+                    cd /var/www/html/benz
+                    git config --global --add safe.directory /var/www/html/benz
                     git fetch --all --tags
-                    git checkout v1.0.0 -f || echo "Tag v1.0.0 not found, skipping checkout"
+                    git checkout v1.0.0 -f
                 '''
             }
         }
@@ -69,37 +61,34 @@ pipeline {
             steps {
                 echo "Building and running Docker container..."
                 sh '''
-                    cd "$TARGET_PATH"
+                    cd /var/www/html/benz
 
-                    # Stop and remove container if exists
-                    if [ "$(docker ps -aq -f name=^/${PROJECT_NAME}$)" ]; then
-                        echo "Container '${PROJECT_NAME}' exists. Stopping and removing..."
-                        docker stop ${PROJECT_NAME}
-                        docker rm ${PROJECT_NAME}
+                    CONTAINER_EXISTS=$(docker ps -aq -f name=^/benz$)
+                    IMAGE_EXISTS=$(docker images -q benz)
+
+                    if [ "$CONTAINER_EXISTS" ]; then
+                        echo "Stopping and removing existing container..."
+                        docker stop benz
+                        docker rm benz
                     else
-                        echo "Container '${PROJECT_NAME}' does not exist."
+                        echo "Container 'benz' does not exist."
                     fi
 
-                    # Remove image if exists
-                    if [ "$(docker images -q ${PROJECT_NAME})" ]; then
-                        echo "Image '${PROJECT_NAME}' exists. Removing image..."
-                        docker rmi -f ${PROJECT_NAME}
+                    if [ "$IMAGE_EXISTS" ]; then
+                        echo "Removing existing image..."
+                        docker rmi -f benz
                     else
-                        echo "Image '${PROJECT_NAME}' does not exist."
+                        echo "Image 'benz' does not exist."
                     fi
 
-                    # Build and run the new container
-                    docker build -t ${PROJECT_NAME} .
-                    docker run -d --name ${PROJECT_NAME} -p 80:80 ${PROJECT_NAME}
+                    echo "Starting docker build with logging..."
+                    ( docker build -t benz . | tee build.log ) || exit 1
                 '''
             }
         }
     }
 
     post {
-        success {
-            echo " Pipeline executed successfully for project: ${env.PROJECT_NAME}"
-        }
         failure {
             echo " Pipeline failed. Check logs."
         }
