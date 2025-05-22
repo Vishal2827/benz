@@ -40,9 +40,11 @@ pipeline {
                     cd "$PARENT_DIR"
 
                     if [ -d "$TARGET_PATH/.git" ]; then
-                        echo "Git repo exists. Pulling latest changes..."
+                        echo "Git repo exists. Checking out main branch and pulling..."
                         cd "$TARGET_PATH"
-                        git pull
+                        git config --global --add safe.directory "$TARGET_PATH"
+                        git checkout main || git checkout -b main
+                        git pull origin main
                     else
                         echo "Cloning repository..."
                         git clone "$REPO_URL" "$TARGET_PATH"
@@ -69,17 +71,11 @@ pipeline {
                 sh '''
                     cd "$TARGET_PATH"
 
-                    # Stop and remove old container if exists
                     docker stop benz || true
                     docker rm benz || true
-
-                    # Remove old image if exists
                     docker rmi -f benz || true
 
-                    # Build new image
                     docker build -t benz .
-
-                    # Run container
                     docker run -d --name benz -p 80:80 benz
                 '''
             }
