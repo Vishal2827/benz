@@ -3,7 +3,7 @@ import Footer from '../Components/Footer';
 
 const teamMembers = [
   {
-    name: 'Vishal Parjapati',
+    name: 'Vishal ',
     role: 'Manager',
     email: 'vishalparjapatt@mercedes.com',
     phone: '+1 555-101-2020',
