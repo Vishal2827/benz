@@ -10,7 +10,7 @@ const teamMembers = [
     photo: '/assets/IMG_5001.PNG',
   },
   {
-    name: 'Suraj Singh Verma',
+    name: 'Suraj  Verma',
     role: 'Customer Relations',
     email: 'suraj.singh@mercedes.com',
     phone: '+1 555-303-4040',
